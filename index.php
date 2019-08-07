@@ -1,7 +1,7 @@
 <?php
 
 // 文字コード設定
-header('Content-Type: text/html; charset=UTF-8');
+header('Content-Type: application/json; charset=UTF-8');
 
 // 名字生成用配列
 $first_name[1] = ['', '山', '川', '谷', '田', '小', '石', '水', '大', '橋', '野', '池', '吉', '中'];
