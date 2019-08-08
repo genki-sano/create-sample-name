@@ -1,7 +1,7 @@
 <?php
 
 // 文字コード設定
-header('Content-Type: text/html; charset=UTF-8');
+header('Content-Type: application/json; charset=UTF-8');
 
 // 名字生成用配列
 $first_name[1] = ['', '山', '川', '谷', '田', '小', '石', '水', '大', '橋', '野', '池', '吉', '中'];
@@ -13,32 +13,18 @@ $first_name[3] = ['佐藤', '鈴木', '高橋', '田中', '伊藤', '渡辺', '�
 $last_name[1] = ['順', '優', '恵', '浩', '裕', '正', '昭', '真', '純', '清', '博', '孝', '幸'];
 $last_name[2] = ['', '一', '二', '子', '美', '一郎', '実', '義', '夫', '雄', '太郎', '彦'];
 
-// 各配列の要素数を取得
-$len_first_name1 = count($first_name[1]) - 1;
-$len_first_name2 = count($first_name[2]) - 1;
-$len_first_name3 = count($first_name[3]) - 1;
-$len_last_name1  = count($last_name[1]) - 1;
-$len_last_name2  = count($last_name[2]) - 1;
-
-// 要素数の中で乱数値を生成
-$seed_a = mt_rand(0, $len_first_name1);
-$seed_b = mt_rand(0, $len_first_name2);
-$seed_c = mt_rand(0, $len_last_name1);
-$seed_d = mt_rand(0, $len_last_name2);
-
 // 苗字を作成
-$name_a = $first_name[1][$seed_a];
-$name_b = $first_name[2][$seed_b];
+$name_a = $first_name[1][array_rand($first_name[1])];
+$name_b = $first_name[2][array_rand($first_name[2])];
 // 例外処理（[2文字とも同じ文字] or [1文字目が空] の時に予備名字を使用）
 if ($name_a === $name_b || empty($name_a)) {
-    $seed_a = mt_rand(0, $len_first_name3);
-    $name_a = $first_name[3][$seed_a];
+    $name_a = $first_name[3][array_rand($first_name[3])];
     $name_b = '';
 }
 
 // 名前を作成
-$name_c = $last_name[1][$seed_c];
-$name_d = $last_name[2][$seed_d];
+$name_c = $last_name[1][array_rand($last_name[1])];
+$name_d = $last_name[2][array_rand($last_name[2])];
 
 // 出力用に整形
 $name['last_name']  = $name_a . $name_b;
